@@ -6,4 +6,3 @@ router = routers.SimpleRouter()
 router.register(r'snippets', views.SnippetViewSet)
 
 urlpatterns = router.urls
-
