@@ -2,11 +2,9 @@ from django.urls import path, include
 from rest_framework import routers
 from snippets import views
 
-# Create a router and register our viewsets with it
 router = routers.SimpleRouter()
 router.register(r'snippets', views.SnippetViewSet)
 
-# The API URLs are now determined automatically by the router
 urlpatterns = router.urls
 
 
