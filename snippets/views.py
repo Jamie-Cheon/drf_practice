@@ -9,12 +9,14 @@ from .serializers import SnippetSerializer
 
 
 class SnippetFilter(filters.FilterSet):
-    title = filters.CharFilter(field_name='title', method='filter_title')
+    title = filters.CharFilter(field_name='title', method='my_filter')
     min_price = filters.NumberFilter(field_name="price", lookup_expr='gte')
     max_price = filters.NumberFilter(field_name="price", lookup_expr='lte')
 
-    def filter_title(self, queryset, name, value):
-        lookup = Snippet.objects.filter(title__startswith=value)
+    def my_filter(self, queryset, name, value):
+        result = {f'{name}__startswith': value}
+
+        lookup = Snippet.objects.filter(**result)
         return lookup
 
     class Meta:
